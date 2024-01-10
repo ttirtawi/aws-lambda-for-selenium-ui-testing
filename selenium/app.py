@@ -15,19 +15,19 @@ def lambda_handler(event, context):
     driver = webdriver.Chrome('/var/task/chromedriver/chromedriver',chrome_options=options)
 
     start = datetime.now()
-    driver.get('https://www.casadeidei.ro')
-    WebDriverWait(driver, timeout=5).until(lambda d: d.find_element_by_name("phrase"))
-    searchField = driver.find_element_by_name("phrase")
-    searchField.send_keys("table")
-
-    WebDriverWait(driver=driver, timeout=15).until(lambda driver: driver.find_element_by_id("mCSBap_1"))
+    driver.get('https://www.telkomsel.com/prabayar')
+    WebDriverWait(driver, timeout=30).until(lambda d: d.find_element_by_id("kenapa-telkomsel-prabayar"))
+    searchField = driver.find_element_by_id("kenapa-telkomsel-prabayar")
+    print("searchField: {}".format(searchField.text))
 
     stop = datetime.now()
-    thetime = stop - start  
+    thetime = stop - start
     print(thetime)
 
     driver.close();
     driver.quit();
+
+    print('kampret')
 
     response = {
         "statusCode": 200,
