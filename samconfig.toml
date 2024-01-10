@@ -1,0 +1,9 @@
+version = 0.1
+[default.deploy.parameters]
+stack_name = "demo-selenium-lambda2"
+resolve_s3 = true
+s3_prefix = "demo-selenium-lambda2"
+region = "ap-southeast-3"
+capabilities = "CAPABILITY_IAM"
+disable_rollback = true
+image_repositories = ["SeleniumFunction=452922823873.dkr.ecr.ap-southeast-3.amazonaws.com/demoseleniumlambda2a9a51dfc/seleniumfunction930ef00frepo"]

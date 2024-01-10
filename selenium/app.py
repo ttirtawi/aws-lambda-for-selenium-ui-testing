@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from datetime import datetime
+import json
 
 def lambda_handler(event, context):
 
@@ -18,7 +19,8 @@ def lambda_handler(event, context):
     driver.get('https://www.telkomsel.com/prabayar')
     WebDriverWait(driver, timeout=30).until(lambda d: d.find_element_by_id("kenapa-telkomsel-prabayar"))
     searchField = driver.find_element_by_id("kenapa-telkomsel-prabayar")
-    print("searchField: {}".format(searchField.text))
+    textResult = searchField.text
+    print("searchField: {}".format(textResult))
 
     stop = datetime.now()
     thetime = stop - start
@@ -29,9 +31,14 @@ def lambda_handler(event, context):
 
     print('kampret')
 
+    responseBody = {
+        "text": textResult,
+        "duration": thetime.seconds
+    }
+
     response = {
         "statusCode": 200,
-        "body": thetime.seconds
+        "body": json.dumps(responseBody)
     }
 
     return response

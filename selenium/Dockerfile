@@ -3,6 +3,8 @@ FROM public.ecr.aws/lambda/python:3.6
 COPY app.py requirements.txt ./
 
 RUN python3.6 -m pip install -r requirements.txt -t .
+#RUN yum update -y
+#RUN yum install unzip -y
 
 ADD https://github.com/adieuadieu/serverless-chrome/releases/download/v1.0.0-41/stable-headless-chromium-amazonlinux-2017-03.zip /var/task/headless-chromium.zip
 
